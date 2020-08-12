@@ -24,8 +24,13 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
-    @post.save
-    redirect_to("/posts/index")
+    if @post.save
+       flash[:notice] = "正常に投稿されました"
+       redirect_to("/posts/index")
+    else
+       flash[:notice] = "エラー:140字より多いか、または内容が空です"
+       redirect_to("/posts/#{@post.id}/edit")
+    end
   end
 
   def destroy

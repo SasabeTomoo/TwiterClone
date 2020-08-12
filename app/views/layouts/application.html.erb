@@ -8,14 +8,21 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <a>ヘッダー</a>
-    <a href="/">[トップページ]</a>
-    <a href="/posts/index">[投稿一覧]</a>
-    <a href="/posts/new">[新規投稿]</a>
-  </header>
 
   <body>
+    <header>
+      <a>ヘッダー</a>
+      <a href="/">[トップページ]</a>
+      <a href="/posts/index">[投稿一覧]</a>
+      <a href="/posts/new">[新規投稿]</a>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 
